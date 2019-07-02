@@ -1,14 +1,8 @@
-import s01_reading as s1 , s02_vectorization as s2,s03_DataPrepration as s3 ,conf as c
+import s01_reading as s1 , s02_vectorization as s2,s03_DataPrepration as s3,conf as c
 import tensorflow as tf
 
 # Length of the vocabulary in chars
 vocab_size = len(s1.vocab)
-
-# The embedding dimension
-embedding_dim = 256
-
-# Number of RNN units
-rnn_units = 1024
 
 if tf.test.is_gpu_available():
   rnn = tf.keras.layers.CuDNNGRU
@@ -33,9 +27,9 @@ def build_model(vocab_size, embedding_dim, rnn_units, batch_size):
 
 model = build_model(
   vocab_size = len(s1.vocab),
-  embedding_dim=embedding_dim,
-  rnn_units=rnn_units,
-  batch_size=s3.BATCH_SIZE)
+  embedding_dim=c.embedding_dim,
+  rnn_units=c.rnn_units,
+  batch_size=c.BATCH_SIZE)
 
 for input_example_batch, target_example_batch in s3.dataset.take(1):
   example_batch_predictions = model(input_example_batch)

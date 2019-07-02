@@ -4,6 +4,7 @@ import tensorflow as tf , os
 def loss(labels, logits):
   return tf.keras.losses.sparse_categorical_crossentropy(labels, logits, from_logits=True)
 
+
 example_batch_loss  = loss(s4.target_example_batch, s4.example_batch_predictions)
 if c.report_s05 :
     print("Prediction shape: ", s4.example_batch_predictions.shape, " # (batch_size, sequence_length, vocab_size)")
@@ -23,6 +24,5 @@ checkpoint_callback=tf.keras.callbacks.ModelCheckpoint(
     filepath=checkpoint_prefix,
     save_weights_only=True)
 
-#Execute the training¶
-EPOCHS=20
-history = s4.model.fit(s3.dataset.repeat(), epochs=EPOCHS, steps_per_epoch=s3.steps_per_epoch, callbacks=[checkpoint_callback])
+
+history = s4.model.fit(s3.dataset.repeat(), epochs=c.EPOCHS, steps_per_epoch=s3.steps_per_epoch, callbacks=[checkpoint_callback])

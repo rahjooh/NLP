@@ -10,7 +10,7 @@ text_as_int = np.array([char2idx[c] for c in s1.text])
 
 if c.report_s02:
     print('     {')
-    for char, _ in zip(char2idx, range(20)):
+    for char, _ in zip(char2idx, range(c.vectorizationLength)):
         print('      {:4s}: {:3d},'.format(repr(char), char2idx[char]))
     print('  ...\n}')
     # Show how the first 13 characters from the text are mapped to integers
